@@ -1,7 +1,7 @@
 package example.board;
 
-import example.ship.Ship;
 import example.cell.Cell;
+import example.util.ShipInit;
 
 import java.util.Random;
 
@@ -22,10 +22,7 @@ public class GameBoard {
 
     public void autoPlaceShips() {
         Random random = new Random();
-        int[] shipSizes = {Ship.SIXSHIP, Ship.FIVESHIP, Ship.FIVESHIP, Ship.FOURSHIP, Ship.FOURSHIP, Ship.FOURSHIP, Ship.THREESHIP, Ship.THREESHIP,
-                Ship.THREESHIP, Ship.THREESHIP, Ship.TWOSHIP, Ship.TWOSHIP, Ship.TWOSHIP, Ship.TWOSHIP, Ship.TWOSHIP,
-                Ship.ONESHIP, Ship.ONESHIP, Ship.ONESHIP, Ship.ONESHIP, Ship.ONESHIP, Ship.ONESHIP};
-
+        int[] shipSizes = ShipInit.initShips();
         for (int size : shipSizes) {
             boolean placed = false;
             while (!placed) {
@@ -103,17 +100,12 @@ public class GameBoard {
 
     private String getCellSymbol(int x, int y, boolean showShips) {
         String state = board[x][y].getState();
-        if (!showShips && "корабль".equals(state)) {
-            return "-";
-        } else if ("пустая".equals(state)) {
-            return "-";
-        } else if ("корабль".equals(state)) {
-            return "1";
-        } else if ("ранил".equals(state)) {
-            return "X";
-        } else {
-            return ".";
-        }
+        return switch (state) {
+            case "пустая" -> "-";
+            case "корабль" -> showShips ? "1" : "-";
+            case "ранил" -> "X";
+            default -> ".";
+        };
     }
 
     public boolean hasShipsRemaining() {

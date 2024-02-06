@@ -1,7 +1,7 @@
 package example.player;
 
 import example.board.GameBoard;
-import example.ship.Ship;
+import example.util.ShipInit;
 
 import java.util.Scanner;
 
@@ -20,10 +20,7 @@ public class Player {
     public void placeShipsManually(boolean showShips) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(name + ", разместите свои корабли.");
-        int[] shipSizes = {Ship.SIXSHIP, Ship.FIVESHIP, Ship.FIVESHIP, Ship.FOURSHIP, Ship.FOURSHIP, Ship.FOURSHIP, Ship.THREESHIP, Ship.THREESHIP,
-                Ship.THREESHIP, Ship.THREESHIP, Ship.TWOSHIP, Ship.TWOSHIP, Ship.TWOSHIP, Ship.TWOSHIP, Ship.TWOSHIP,
-                Ship.ONESHIP, Ship.ONESHIP, Ship.ONESHIP, Ship.ONESHIP, Ship.ONESHIP, Ship.ONESHIP};
-
+        int[] shipSizes = ShipInit.initShips();
         playerBoard.displayBoard(showShips);
 
         for (int size : shipSizes) {
