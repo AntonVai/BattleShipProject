@@ -1,6 +1,6 @@
 package example.game;
 
-import example.Player.Player;
+import example.player.Player;
 
 import java.util.Scanner;
 
@@ -11,6 +11,7 @@ public class Game {
     public Game() {
         initializePlayers();
     }
+
     private void initializePlayers() {
         Scanner scanner = new Scanner(System.in);
 

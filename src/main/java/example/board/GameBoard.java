@@ -1,6 +1,6 @@
-package example.Board;
+package example.board;
 
-import example.Ship.Ship;
+import example.ship.Ship;
 import example.cell.Cell;
 
 import java.util.Random;
@@ -20,7 +20,6 @@ public class GameBoard {
     }
 
 
-
     public void autoPlaceShips() {
         Random random = new Random();
         int[] shipSizes = {Ship.SIXSHIP, Ship.FIVESHIP, Ship.FIVESHIP, Ship.FOURSHIP, Ship.FOURSHIP, Ship.FOURSHIP, Ship.THREESHIP, Ship.THREESHIP,
@@ -37,6 +36,7 @@ public class GameBoard {
             }
         }
     }
+
     public boolean tryPlaceShip(int x, int y, int size, char direction) {
         if (x >= 0 && x < 16 && y >= 0 && y < 16) {
             // Проверяем наличие других кораблей вокруг места установки нового корабля
@@ -126,6 +126,7 @@ public class GameBoard {
         }
         return false;
     }
+
     public boolean isShipDestroyed(int row, int col) {
         // Проверяем, остались ли другие клетки корабля вокруг
         for (int i = row - 1; i <= row + 1; i++) {

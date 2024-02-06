@@ -1,7 +1,7 @@
-package example.Player;
+package example.player;
 
-import example.Board.GameBoard;
-import example.Ship.Ship;
+import example.board.GameBoard;
+import example.ship.Ship;
 
 import java.util.Scanner;
 
@@ -10,6 +10,7 @@ public class Player {
     private final String name;
 
     private final GameBoard playerBoard;
+
     public Player(String name) {
         this.name = name;
         this.playerBoard = new GameBoard();

@@ -1,6 +1,6 @@
-package example.Ship;
+package example.ship;
 
-public  class Ship {
+public class Ship {
     public static final int SIXSHIP = 6;
     public static final int FIVESHIP = 5;
     public static final int FOURSHIP = 4;
