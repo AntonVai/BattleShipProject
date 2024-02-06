@@ -1,7 +1,6 @@
 package example.player;
 
 import example.board.GameBoard;
-import example.util.ShipInit;
 
 import java.util.Scanner;
 
@@ -18,41 +17,7 @@ public class Player {
 
 
     public void placeShipsManually(boolean showShips) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(name + ", разместите свои корабли.");
-        int[] shipSizes = ShipInit.initShips();
-        playerBoard.displayBoard(showShips);
-
-        for (int size : shipSizes) {
-            boolean placed = false;
-            while (!placed) {
-                System.out.println("Введите координаты для корабля размером " + size + " (начальная точка, например, A1): ");
-                String input = scanner.next().toUpperCase();
-                if (input.length() == 2) {
-                    char startCol = input.charAt(0);
-                    int startRow = Integer.parseInt(input.substring(1));
-                    int startColIndex = startCol - 'A';
-                    int startRowIndex = startRow - 1;
-
-                    System.out.println("Выберите направление (H - горизонтальное, V - вертикальное): ");
-                    char direction = scanner.next().toUpperCase().charAt(0);
-
-                    if ((direction == 'H' || direction == 'V') && startRow >= 1 && startRow <= 16) {
-                        placed = playerBoard.tryPlaceShip(startRowIndex, startColIndex, size, direction);
-                        if (placed) {
-                            playerBoard.displayBoard(showShips);
-                        } else {
-                            System.out.println("Невозможно разместить корабль с заданными параметрами. Попробуйте снова.");
-                        }
-                    } else {
-                        System.out.println("Некорректное направление или координаты. Пожалуйста, попробуйте снова.");
-                    }
-                } else {
-                    System.out.println("Некорректный ввод. Пожалуйста, попробуйте снова.");
-                }
-            }
-        }
-        System.out.println(name + ", корабли размещены!");
+        playerBoard.placeShipsManually(this, showShips);
     }
 
     public void placeShipsAutomatically() {

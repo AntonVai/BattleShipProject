@@ -1,9 +1,11 @@
 package example.board;
 
 import example.cell.Cell;
+import example.player.Player;
 import example.util.ShipInit;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class GameBoard {
 
@@ -18,6 +20,45 @@ public class GameBoard {
             }
         }
     }
+
+    public void placeShipsManually(Player player, boolean showShips) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(player.getName() + ", разместите свои корабли.");
+        int[] shipSizes = ShipInit.initShips();
+        displayBoard(showShips);
+
+        for (int size : shipSizes) {
+            boolean placed = false;
+            while (!placed) {
+                System.out.println("Введите координаты для корабля размером " + size + " (начальная точка, например, A1): ");
+                String input = scanner.next().toUpperCase();
+                if (input.length() == 2) {
+                    char startCol = input.charAt(0);
+                    int startRow = Integer.parseInt(input.substring(1));
+                    int startColIndex = startCol - 'A';
+                    int startRowIndex = startRow - 1;
+
+                    System.out.println("Выберите направление (H - горизонтальное, V - вертикальное): ");
+                    char direction = scanner.next().toUpperCase().charAt(0);
+
+                    if ((direction == 'H' || direction == 'V') && startRow >= 1 && startRow <= 16) {
+                        placed = tryPlaceShip(startRowIndex, startColIndex, size, direction);
+                        if (placed) {
+                            displayBoard(showShips);
+                        } else {
+                            System.out.println("Невозможно разместить корабль с заданными параметрами. Попробуйте снова.");
+                        }
+                    } else {
+                        System.out.println("Некорректное направление или координаты. Пожалуйста, попробуйте снова.");
+                    }
+                } else {
+                    System.out.println("Некорректный ввод. Пожалуйста, попробуйте снова.");
+                }
+            }
+        }
+        System.out.println(player.getName() + ", корабли размещены!");
+    }
+
 
 
     public void autoPlaceShips() {
