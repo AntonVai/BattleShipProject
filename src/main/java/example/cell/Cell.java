@@ -1,7 +1,7 @@
 package example.cell;
 
 public class Cell {
-    private String state; // пустое место в нашем двумерном ммассиве,где потом будут корабли, попадания и промахи
+    private String state = "пустая"; // пустое место в нашем двумерном ммассиве,где потом будут корабли, попадания и промахи
 
     public Cell() {
         this.state = "пустая";

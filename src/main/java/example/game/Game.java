@@ -9,8 +9,18 @@ public class Game {
     private Player player2;
 
     public Game() {
-        this.player1 = new Player("Игрок 1");
-        this.player2 = new Player("Игрок 2");
+        initializePlayers();
+    }
+    private void initializePlayers() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите имя первого игрока: ");
+        String player1Name = scanner.nextLine();
+        player1 = new Player(player1Name);
+
+        System.out.println("Введите имя второго игрока: ");
+        String player2Name = scanner.nextLine();
+        player2 = new Player(player2Name);
     }
 
     public void play() {
@@ -39,21 +49,20 @@ public class Game {
         }
 
         while (true) {
-            System.out.println("Игровое поле Игрока 1:");
-            player1.playerBoard.displayBoard(true);
-            System.out.println("Игровое поле Игрока 2:");
-            player2.playerBoard.displayBoard(false);
+            System.out.println("Игровое поле Игрока 1 под именем: " + player1.getName());
+            player1.getPlayerBoard().displayBoard(true);
+            System.out.println("Игровое поле Игрока 2 под именем: " + player2.getName());
+            player2.getPlayerBoard().displayBoard(false);
             player1.attack(player2);
             if (!player2.hasShipsRemaining()) {
-                System.out.println("Игрок 1 победил!");
+                System.out.println(player1.getName() + " победил!");
                 break;
             }
-
-            System.out.println("Игровое поле Игрока 2:");
-            player2.playerBoard.displayBoard(true);
+            System.out.println("Игровое поле Игрока 2 под именем: " + player2.getName());
+            player2.getPlayerBoard().displayBoard(true);
             player2.attack(player1);
             if (!player1.hasShipsRemaining()) {
-                System.out.println("Игрок 2 победил!");
+                System.out.println(player2.getName() + " победил!");
                 break;
             }
         }

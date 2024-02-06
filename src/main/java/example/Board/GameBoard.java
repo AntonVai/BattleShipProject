@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GameBoard {
 
-    private Cell[][] board;
+    private final Cell[][] board;
 
 
     public GameBoard() {

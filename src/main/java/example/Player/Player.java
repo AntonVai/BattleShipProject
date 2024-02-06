@@ -6,9 +6,10 @@ import example.Ship.Ship;
 import java.util.Scanner;
 
 public class Player {
-    private String name;
-    public GameBoard playerBoard;
 
+    private final String name;
+
+    private final GameBoard playerBoard;
     public Player(String name) {
         this.name = name;
         this.playerBoard = new GameBoard();
@@ -104,6 +105,14 @@ public class Player {
 
     public boolean hasShipsRemaining() {
         return playerBoard.hasShipsRemaining();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public GameBoard getPlayerBoard() {
+        return playerBoard;
     }
 }
 
