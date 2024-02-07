@@ -10,12 +10,13 @@ import java.util.Scanner;
 public class GameBoard {
 
     private final Cell[][] board;
+    private final int COUNT_SIZE = 16;
 
 
     public GameBoard() {
-        this.board = new Cell[16][16];
-        for (int i = 0; i < 16; i++) {
-            for (int j = 0; j < 16; j++) {
+        this.board = new Cell[COUNT_SIZE][COUNT_SIZE];
+        for (int i = 0; i < COUNT_SIZE; i++) {
+            for (int j = 0; j < COUNT_SIZE; j++) {
                 board[i][j] = new Cell();
             }
         }
@@ -41,7 +42,7 @@ public class GameBoard {
                     System.out.println("Выберите направление (H - горизонтальное, V - вертикальное): ");
                     char direction = scanner.next().toUpperCase().charAt(0);
 
-                    if ((direction == 'H' || direction == 'V') && startRow >= 1 && startRow <= 16) {
+                    if ((direction == 'H' || direction == 'V') && startRow >= 1 && startRow <= COUNT_SIZE) {
                         placed = tryPlaceShip(startRowIndex, startColIndex, size, direction);
                         if (placed) {
                             displayBoard(showShips);
@@ -67,8 +68,8 @@ public class GameBoard {
         for (int size : shipSizes) {
             boolean placed = false;
             while (!placed) {
-                int x = random.nextInt(16);
-                int y = random.nextInt(16);
+                int x = random.nextInt(COUNT_SIZE);
+                int y = random.nextInt(COUNT_SIZE);
                 char direction = (random.nextBoolean()) ? 'H' : 'V';
                 placed = tryPlaceShip(x, y, size, direction);
             }
@@ -76,11 +77,11 @@ public class GameBoard {
     }
 
     public boolean tryPlaceShip(int x, int y, int size, char direction) {
-        if (x >= 0 && x < 16 && y >= 0 && y < 16) {
+        if (x >= 0 && x < COUNT_SIZE && y >= 0 && y < COUNT_SIZE) {
             // Проверяем наличие других кораблей вокруг места установки нового корабля
             for (int i = x - 1; i <= x + size; i++) {
                 for (int j = y - 1; j <= y + size; j++) {
-                    if (i >= 0 && i < 16 && j >= 0 && j < 16) {
+                    if (i >= 0 && i < COUNT_SIZE && j >= 0 && j < COUNT_SIZE) {
                         if (!"пустая".equals(board[i][j].getState())) {
                             return false;
                         }
@@ -88,12 +89,12 @@ public class GameBoard {
                 }
             }
 
-            if (direction == 'H' && y + size <= 16) {
+            if (direction == 'H' && y + size <= COUNT_SIZE) {
                 for (int i = 0; i < size; i++) {
                     board[x][y + i].setState("корабль");
                 }
                 return true;
-            } else if (direction == 'V' && x + size <= 16) {
+            } else if (direction == 'V' && x + size <= COUNT_SIZE) {
                 for (int i = 0; i < size; i++) {
                     board[x + i][y].setState("корабль");
                 }
@@ -130,9 +131,9 @@ public class GameBoard {
         }
         System.out.println();
 
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < COUNT_SIZE; i++) {
             System.out.printf("%2d ", (i + 1));
-            for (int j = 0; j < 16; j++) {
+            for (int j = 0; j < COUNT_SIZE; j++) {
                 System.out.print(" " + getCellSymbol(i, j, showShips) + " ");
             }
             System.out.println();
@@ -150,8 +151,8 @@ public class GameBoard {
     }
 
     public boolean hasShipsRemaining() {
-        for (int i = 0; i < 16; i++) {
-            for (int j = 0; j < 16; j++) {
+        for (int i = 0; i < COUNT_SIZE; i++) {
+            for (int j = 0; j < COUNT_SIZE; j++) {
                 if ("корабль".equals(board[i][j].getState())) {
                     return true;
                 }
@@ -164,7 +165,7 @@ public class GameBoard {
         // Проверяем, остались ли другие клетки корабля вокруг
         for (int i = row - 1; i <= row + 1; i++) {
             for (int j = col - 1; j <= col + 1; j++) {
-                if (i >= 0 && i < 16 && j >= 0 && j < 16) {
+                if (i >= 0 && i < COUNT_SIZE && j >= 0 && j < COUNT_SIZE) {
                     if (!(i == row && j == col) && board[i][j].getState().equals("корабль")) {
                         return false;
                     }

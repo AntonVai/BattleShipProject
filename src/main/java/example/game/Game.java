@@ -1,12 +1,15 @@
 package example.game;
 
 import example.player.Player;
+import example.util.Logger;
+
 
 import java.util.Scanner;
 
 public class Game {
     private Player player1;
     private Player player2;
+
 
     public Game() {
         initializePlayers();
@@ -54,6 +57,7 @@ public class Game {
             player1.getPlayerBoard().displayBoard(true);
             System.out.println("Игровое поле Игрока 2 под именем: " + player2.getName());
             player2.getPlayerBoard().displayBoard(false);
+
             player1.attack(player2);
             if (!player2.hasShipsRemaining()) {
                 System.out.println(player1.getName() + " победил!");
@@ -68,6 +72,7 @@ public class Game {
             }
         }
     }
+
 }
 
 
