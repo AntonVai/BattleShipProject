@@ -3,6 +3,7 @@ package example.game;
 import example.player.Player;
 import example.util.Logger;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Game {
@@ -15,7 +16,7 @@ public class Game {
     }
 
     private void initializePlayers() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
 
         System.out.println("Введите имя первого игрока: ");
         String player1Name = scanner.nextLine();
@@ -28,7 +29,7 @@ public class Game {
 
     public void play() {
         Logger.startTime();
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in,StandardCharsets.UTF_8);
 
         System.out.println("Выберите режим размещения кораблей:");
         System.out.println("1. Ручное размещение");
@@ -55,7 +56,6 @@ public class Game {
         while (true) {
             Logger.saveBoard(player1.getName(), player1.getPlayerBoard());
             Logger.saveBoard(player2.getName(), player2.getPlayerBoard());
-
             System.out.println("Игровое поле Игрока 1 под именем: " + player1.getName());
             player1.getPlayerBoard().displayBoard(true);
             System.out.println("Игровое поле Игрока 2 под именем: " + player2.getName());

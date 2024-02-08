@@ -3,6 +3,7 @@ package example.player;
 import example.board.GameBoard;
 import example.util.Logger;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Player {
@@ -27,7 +28,7 @@ public class Player {
     }
 
     public void attack(Player opponent) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
         boolean hit = true;
         while (hit) {
             System.out.println(name + ", введите координаты для атаки (например, A1): ");

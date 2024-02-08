@@ -4,8 +4,10 @@ import example.cell.Cell;
 import example.player.Player;
 import example.util.ShipInit;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 import java.util.Scanner;
+
 
 public class GameBoard {
 
@@ -24,7 +26,7 @@ public class GameBoard {
     }
 
     public void placeShipsManually(Player player, boolean showShips) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
         System.out.println(player.getName() + ", разместите свои корабли.");
         int[] shipSizes = ShipInit.initShips();
         displayBoard(showShips);
@@ -60,7 +62,6 @@ public class GameBoard {
         }
         System.out.println(player.getName() + ", корабли размещены!");
     }
-
 
 
     public void autoPlaceShips() {

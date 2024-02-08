@@ -5,6 +5,7 @@ import example.board.GameBoard;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -24,7 +25,7 @@ public class Logger {
     }
 
     private static void writer(String str) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH,StandardCharsets.UTF_8, true))) {
             LocalDateTime currentTime = LocalDateTime.now();
             String formattedTime = currentTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             writer.write(str + ": " + formattedTime + "\n");
@@ -34,7 +35,7 @@ public class Logger {
     }
 
     public static void saveBoard(String playerName, GameBoard gameBoard) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, StandardCharsets.UTF_8, true))) {
             writer.write("Состояние поля игрока " + playerName + ":\n");
             writer.write("   ");
             for (char c = 'A'; c <= 'P'; c++) {
