@@ -3,7 +3,6 @@ package example.game;
 import example.player.Player;
 import example.util.Logger;
 
-
 import java.util.Scanner;
 
 public class Game {
@@ -28,6 +27,7 @@ public class Game {
     }
 
     public void play() {
+        Logger.startTime();
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Выберите режим размещения кораблей:");
@@ -53,6 +53,9 @@ public class Game {
         }
 
         while (true) {
+            Logger.saveBoard(player1.getName(), player1.getPlayerBoard());
+            Logger.saveBoard(player2.getName(), player2.getPlayerBoard());
+
             System.out.println("Игровое поле Игрока 1 под именем: " + player1.getName());
             player1.getPlayerBoard().displayBoard(true);
             System.out.println("Игровое поле Игрока 2 под именем: " + player2.getName());
@@ -61,6 +64,8 @@ public class Game {
             player1.attack(player2);
             if (!player2.hasShipsRemaining()) {
                 System.out.println(player1.getName() + " победил!");
+                Logger.saveBoard(player1.getName() + " победил", player1.getPlayerBoard());
+                Logger.saveBoard(player2.getName() + " проиграл", player2.getPlayerBoard());
                 break;
             }
             System.out.println("Игровое поле Игрока 2 под именем: " + player2.getName());
@@ -68,11 +73,13 @@ public class Game {
             player2.attack(player1);
             if (!player1.hasShipsRemaining()) {
                 System.out.println(player2.getName() + " победил!");
+                Logger.saveBoard(player2.getName() + " победил", player2.getPlayerBoard());
+                Logger.saveBoard(player1.getName() + " проиграл", player1.getPlayerBoard());
                 break;
             }
         }
+        Logger.endTime();
     }
-
 }
 
 

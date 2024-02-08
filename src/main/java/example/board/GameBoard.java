@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class GameBoard {
 
+
     private final Cell[][] board;
     private final int COUNT_SIZE = 16;
 
@@ -140,11 +141,11 @@ public class GameBoard {
         }
     }
 
-    private String getCellSymbol(int x, int y, boolean showShips) {
+    public String getCellSymbol(int x, int y, boolean showShips) {
         String state = board[x][y].getState();
         return switch (state) {
             case "пустая" -> "-";
-            case "корабль" -> showShips ? "1" : "-";
+            case "корабль" -> showShips ? "■" : "-";
             case "ранил" -> "X";
             default -> ".";
         };
@@ -174,6 +175,5 @@ public class GameBoard {
         }
         return true; // Если других клеток корабля не осталось, считаем его убитым
     }
-
 }
 

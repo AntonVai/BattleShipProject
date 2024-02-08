@@ -1,6 +1,7 @@
 package example.player;
 
 import example.board.GameBoard;
+import example.util.Logger;
 
 import java.util.Scanner;
 
@@ -29,41 +30,43 @@ public class Player {
         Scanner scanner = new Scanner(System.in);
         boolean hit = true;
         while (hit) {
-                System.out.println(name + ", введите координаты для атаки (например, A1): ");
-                String input = scanner.next().toUpperCase();
+            System.out.println(name + ", введите координаты для атаки (например, A1): ");
+            String input = scanner.next().toUpperCase();
 
-                if (input.length() >= 2) {
-                    char col = input.charAt(0);
-                    String rowStr = input.substring(1);
+            if (input.length() >= 2) {
+                char col = input.charAt(0);
+                String rowStr = input.substring(1);
 
-                    // Проверяем, является ли введенное значение числом
-                    if (rowStr.matches("\\d+")) {
-                        int row = Integer.parseInt(rowStr);
-
-                        hit = opponent.playerBoard.checkHit(row - 1, col - 'A');
-                        if (hit) {
-                            // Проверяем, был ли корабль полностью уничтожен
-                            if (opponent.playerBoard.isShipDestroyed(row - 1, col - 'A')) {
-                                System.out.println("Корабль убит!");
-                            } else {
-                                System.out.println("Ранил");
-                            }
+                // Проверяем, является ли введенное значение числом
+                if (rowStr.matches("\\d+")) {
+                    int row = Integer.parseInt(rowStr);
+                    Logger.shootLog(opponent.name, col + rowStr);
+                    hit = opponent.playerBoard.checkHit(row - 1, col - 'A');
+                    if (hit) {
+                        // Проверяем, был ли корабль полностью уничтожен
+                        if (opponent.playerBoard.isShipDestroyed(row - 1, col - 'A')) {
+                            System.out.println("Корабль убит!");
+                            Logger.saveBoard(name, opponent.getPlayerBoard());
                         } else {
-                            System.out.println("Мимо");
+                            System.out.println("Ранил");
+                            Logger.saveBoard(name, opponent.getPlayerBoard());
                         }
-
-                        System.out.println("Игровое поле противника:");
-                        opponent.playerBoard.displayBoard(false);
                     } else {
-                        System.out.println("Некорректный ввод. Пожалуйста, введите координаты в формате, например, A1.");
-                        hit = false;
+                        System.out.println("Мимо");
+                        Logger.saveBoard(name, opponent.getPlayerBoard());
                     }
+                    System.out.println("Игровое поле противника:");
+                    opponent.playerBoard.displayBoard(false);
                 } else {
                     System.out.println("Некорректный ввод. Пожалуйста, введите координаты в формате, например, A1.");
                     hit = false;
                 }
+            } else {
+                System.out.println("Некорректный ввод. Пожалуйста, введите координаты в формате, например, A1.");
+                hit = false;
             }
         }
+    }
 
     public boolean hasShipsRemaining() {
         return playerBoard.hasShipsRemaining();
