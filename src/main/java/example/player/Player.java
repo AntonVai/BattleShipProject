@@ -7,8 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Player {
-    private int lastHitRow = -1;
-    private int lastHitCol = -1;
 
     private final String name;
 
