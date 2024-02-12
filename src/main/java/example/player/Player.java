@@ -7,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Player {
+    private int lastHitRow = -1;
+    private int lastHitCol = -1;
 
     private final String name;
 
@@ -38,23 +40,18 @@ public class Player {
                 char col = input.charAt(0);
                 String rowStr = input.substring(1);
 
-                // Проверяем, является ли введенное значение числом
                 if (rowStr.matches("\\d+")) {
                     int row = Integer.parseInt(rowStr);
-                    Logger.shootLog(opponent.name, col + rowStr);
+                    Logger.shootLog(this.getName(), col + rowStr);
                     hit = opponent.playerBoard.checkHit(row - 1, col - 'A');
                     if (hit) {
-                        // Проверяем, был ли корабль полностью уничтожен
                         if (opponent.playerBoard.isShipDestroyed(row - 1, col - 'A')) {
                             System.out.println("Корабль убит!");
-                            Logger.saveBoard(name, opponent.getPlayerBoard());
                         } else {
                             System.out.println("Ранил");
-                            Logger.saveBoard(name, opponent.getPlayerBoard());
                         }
                     } else {
                         System.out.println("Мимо");
-                        Logger.saveBoard(name, opponent.getPlayerBoard());
                     }
                     System.out.println("Игровое поле противника:");
                     opponent.playerBoard.displayBoard(false);
