@@ -1,7 +1,7 @@
 package example.board;
 
 import example.cell.Cell;
-import example.player.Player;
+import example.model.Player;
 import example.util.ShipInit;
 
 import java.nio.charset.StandardCharsets;

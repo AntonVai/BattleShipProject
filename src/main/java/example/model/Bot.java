@@ -1,4 +1,4 @@
-package example.player;
+package example.model;
 
 
 import example.util.Logger;

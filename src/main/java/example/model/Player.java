@@ -1,4 +1,4 @@
-package example.player;
+package example.model;
 
 import example.board.GameBoard;
 import example.util.Logger;

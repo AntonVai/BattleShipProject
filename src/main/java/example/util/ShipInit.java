@@ -1,6 +1,10 @@
 package example.util;
 
+import example.model.ShipTypes;
+
 public final class ShipInit {
+    private ShipInit() {
+    }
 
     public static int[] initShips() {
         return new int[]{ShipTypes.SIX_SHIP.getHP(), ShipTypes.FIVE_SHIP.getHP(), ShipTypes.FIVE_SHIP.getHP(), ShipTypes.FOUR_SHIP.getHP(),

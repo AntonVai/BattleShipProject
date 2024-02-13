@@ -1,4 +1,4 @@
-package example.util;
+package example.model;
 
 public enum ShipTypes {
     SIX_SHIP(6),

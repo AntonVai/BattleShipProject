@@ -9,7 +9,10 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Logger {
+public final class Logger {
+    private Logger() {
+    }
+
     private static final String FILE_PATH = "log.txt";
 
     public static void startTime() {
@@ -25,7 +28,7 @@ public class Logger {
     }
 
     private static void writer(String str) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH,StandardCharsets.UTF_8, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, StandardCharsets.UTF_8, true))) {
             LocalDateTime currentTime = LocalDateTime.now();
             String formattedTime = currentTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             writer.write(str + ": " + formattedTime + "\n");

@@ -1,7 +1,7 @@
 package example.game;
 
-import example.player.Bot;
-import example.player.Player;
+import example.model.Bot;
+import example.model.Player;
 import example.util.Logger;
 
 import java.nio.charset.StandardCharsets;
