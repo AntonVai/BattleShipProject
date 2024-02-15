@@ -12,7 +12,7 @@ public class Bot extends Player {
     private final List<String> botCords = new ArrayList<>();
     private int lastHitRow = -1;
     private int lastHitCol = -1;
-    private boolean searchingMode = true; // Режим поиска корабля
+    private boolean searchingMode = true;
 
     public Bot(String name) {
         super(name);
@@ -68,7 +68,7 @@ public class Bot extends Player {
     }
 
     private Optional<int[]> smartAttack() {
-        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // Возможные направления: вверх, вниз, влево, вправо
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // вверх, вниз, влево, вправо
         Random random = new Random();
 
         // Выбираем случайное направление из списка
@@ -81,6 +81,18 @@ public class Bot extends Player {
             return Optional.empty();
         }
         return Optional.of(new int[]{row, col});
+    }
+
+    public void setLastHitRow(int lastHitRow) {
+        this.lastHitRow = lastHitRow;
+    }
+
+    public void setLastHitCol(int lastHitCol) {
+        this.lastHitCol = lastHitCol;
+    }
+
+    public void setSearchingMode(boolean searchingMode) {
+        this.searchingMode = searchingMode;
     }
 }
 
