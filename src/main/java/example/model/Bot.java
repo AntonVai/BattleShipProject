@@ -53,12 +53,12 @@ public class Bot extends Player {
                 if (hit) {
                     if (opponent.getPlayerBoard().isShipDestroyed(row, col)) {
                         System.out.println("Корабль уничтожен!");
-                        searchingMode = true; // Возвращаемся в режим поиска
+                        searchingMode = true;
                     } else {
                         System.out.println("Ранил");
                         lastHitRow = row;
                         lastHitCol = col;
-                        searchingMode = false; // Продолжаем атаку вокруг попадания
+                        searchingMode = false;
                     }
                 } else {
                     System.out.println("Мимо");

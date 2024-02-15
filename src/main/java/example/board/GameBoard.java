@@ -18,6 +18,10 @@ public class GameBoard {
 
     public GameBoard() {
         this.board = new Cell[COUNT_SIZE][COUNT_SIZE];
+        init();
+    }
+
+    private void init() {
         for (int i = 0; i < COUNT_SIZE; i++) {
             for (int j = 0; j < COUNT_SIZE; j++) {
                 board[i][j] = new Cell();

@@ -36,14 +36,13 @@ public class Player {
         boolean hit = true;
         while (hit) {
             System.out.println(name + ", введите координаты для атаки (например, A1): ");
-            String input = scanner.next().toUpperCase();
+            String input = scanner.nextLine().toUpperCase();
 
             if(input.equalsIgnoreCase("!Show")){
                 System.out.println("Ваше поле");
                 startCommand("!Show");
                 continue;
             }
-
 
             if (input.length() >= 2) {
                 char col = input.charAt(0);
