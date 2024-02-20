@@ -1,6 +1,6 @@
-package example.Commands;
+package myGame.commands;
 
-import example.model.Player;
+import myGame.model.Player;
 
 public interface PlayerCommand {
     void command(Player player);

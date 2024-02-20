@@ -1,6 +1,6 @@
-package example;
+package myGame;
 
-import example.game.Game;
+import myGame.game.Game;
 
 public class Start {
     public static void main(String[] args) {

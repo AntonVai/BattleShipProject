@@ -1,4 +1,4 @@
-package example.model;
+package myGame.model;
 
 public enum ShipTypes {
     SIX_SHIP(6),

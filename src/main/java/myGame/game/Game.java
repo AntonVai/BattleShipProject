@@ -1,8 +1,8 @@
-package example.game;
+package myGame.game;
 
-import example.model.Bot;
-import example.model.Player;
-import example.util.Logger;
+import myGame.model.Bot;
+import myGame.model.Player;
+import myGame.util.Logger;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;

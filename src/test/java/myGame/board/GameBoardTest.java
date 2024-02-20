@@ -1,4 +1,4 @@
-package example.board;
+package myGame.board;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

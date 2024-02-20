@@ -1,9 +1,9 @@
-package example.model;
+package myGame.model;
 
-import example.Commands.PlayerCommand;
-import example.Commands.Show;
-import example.board.GameBoard;
-import example.util.Logger;
+import myGame.commands.PlayerCommand;
+import myGame.commands.Show;
+import myGame.board.GameBoard;
+import myGame.util.Logger;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;

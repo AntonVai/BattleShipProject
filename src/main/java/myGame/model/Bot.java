@@ -1,7 +1,7 @@
-package example.model;
+package myGame.model;
 
 
-import example.util.Logger;
+import myGame.util.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

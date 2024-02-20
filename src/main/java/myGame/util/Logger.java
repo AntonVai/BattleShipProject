@@ -1,6 +1,6 @@
-package example.util;
+package myGame.util;
 
-import example.board.GameBoard;
+import myGame.board.GameBoard;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

@@ -1,6 +1,6 @@
-package example.util;
+package myGame.util;
 
-import example.model.ShipTypes;
+import myGame.model.ShipTypes;
 
 public final class ShipInit {
     private ShipInit() {
